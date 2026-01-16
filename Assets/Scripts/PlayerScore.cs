@@ -1,0 +1,63 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerScore : MonoBehaviour
+{
+    public int pointsPerKill = 100;         // Base points per enemy
+    public float comboTime = 3f;            // Time window for combo in seconds
+    public Text scoreText;                  // UI text to show score
+    public Text comboText;                  // Optional UI to show current combo
+
+    private int totalScore = 0;
+    private int comboCount = 0;
+    private float comboTimer = 0f;
+    public UIManager uiManager;
+    
+    void Update()
+    {
+        // Countdown combo timer
+        if (comboTimer > 0)
+        {
+            comboTimer -= Time.deltaTime;
+        }
+        else
+        {
+            comboCount = 0; // combo expired
+        }
+
+        // Update UI
+        if (scoreText)
+            scoreText.text = "Score: " + totalScore;
+        if (comboText)
+            comboText.text = comboCount > 1 ? "Combo x" + comboCount : "";
+    }
+
+    public void AddKill()
+    {
+        // Increase combo
+        if (comboTimer > 0)
+            comboCount++;
+        else
+            comboCount = 1;
+
+        comboTimer = comboTime;
+
+        // Calculate points
+        int pointsEarned = pointsPerKill * comboCount;
+        totalScore += pointsEarned;
+
+        // Optional debug
+        Debug.Log("Kill! Combo x" + comboCount + " Points +" + pointsEarned);
+
+        if(uiManager != null)
+        {
+            uiManager.UpdateScore(totalScore);
+            uiManager.UpdateCombo(comboCount);
+        }
+    }
+
+    public int GetScore()
+    {
+        return totalScore;
+    }
+}
