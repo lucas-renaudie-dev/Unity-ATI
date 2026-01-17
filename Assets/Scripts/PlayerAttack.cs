@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public UIManager uiManager;
+    public PlayerScore playerScore; // assign in Inspector
 
     [Header("Hitboxes")]
     public Transform punchHitbox;
@@ -64,7 +65,15 @@ public class PlayerAttack : MonoBehaviour
             if (!enemy) continue;
 
             enemy.TakeDamage(punchDamage);
-            Debug.Log("Punch hit " + hit.name + " for " + punchDamage);
+            //Debug.Log("Punch hit " + hit.name + " for " + punchDamage);
+
+            // Add score/combo
+            if (playerScore != null)
+            {
+                playerScore.AddKill();
+                Debug.Log("Score after punch: " + playerScore.GetScore());
+            }
+                
         }
     }
 
@@ -83,7 +92,15 @@ public class PlayerAttack : MonoBehaviour
             if (!enemy) continue;
 
             enemy.TakeDamage(kickDamage);
-            Debug.Log("Kick hit " + hit.name + " for " + kickDamage);
+            //Debug.Log("Kick hit " + hit.name + " for " + kickDamage);
+
+            // Add score/combo
+            if (playerScore != null)
+            {
+                playerScore.AddKill();
+                Debug.Log("Score after kick: " + playerScore.GetScore());
+            }
+                
         }
     }
 
