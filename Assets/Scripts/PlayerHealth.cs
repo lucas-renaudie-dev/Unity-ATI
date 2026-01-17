@@ -21,8 +21,13 @@ public class PlayerHealth : MonoBehaviour
         {
             health += regenRate * Time.deltaTime;
             health = Mathf.Min(health, maxHealth);
+
+            // Update UI while regenerating
+            if (uiManager != null)
+                uiManager.UpdateHealth(health, maxHealth);
         }
     }
+
 
     public void TakeDamage(float dmg)
     {

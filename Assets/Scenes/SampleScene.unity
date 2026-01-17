@@ -409,10 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f72019cdc35834fbf7cf21b5b1d5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 100
+  maxHealth: 50
   health: 0
   regenDelay: 3
-  regenRate: 5
+  regenRate: 20
   uiManager: {fileID: 1127286187}
 --- !u!114 &108699771
 MonoBehaviour:
@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bd0f7f955c86b4e8a50dba0901a00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  uiManager: {fileID: 1127286187}
   punchHitbox: {fileID: 688673708}
   kickHitbox: {fileID: 688673708}
   punchDamage: 10
@@ -2045,7 +2046,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2074,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1422547557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,7 +2581,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

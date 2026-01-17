@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public UIManager uiManager;
+
     [Header("Hitboxes")]
     public Transform punchHitbox;
     public Transform kickHitbox;
@@ -22,9 +24,18 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        // --- Timers ---
         punchTimer -= Time.deltaTime;
         kickTimer -= Time.deltaTime;
 
+        // --- UI cooldowns ---
+        if (uiManager)
+        {
+            uiManager.UpdatePunchCooldown(Mathf.Clamp01(punchTimer / punchCooldown));
+            uiManager.UpdateKickCooldown(Mathf.Clamp01(kickTimer / kickCooldown));
+        }
+
+        // --- Input ---
         if (Input.GetMouseButtonDown(0) && punchTimer <= 0f)
         {
             Punch();
@@ -49,8 +60,11 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
+            EnemyController enemy = hit.GetComponent<EnemyController>();
+            if (!enemy) continue;
+
+            enemy.TakeDamage(punchDamage);
             Debug.Log("Punch hit " + hit.name + " for " + punchDamage);
-            hit.GetComponent<EnemyController>().TakeDamage(punchDamage);
         }
     }
 
@@ -65,12 +79,15 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
+            EnemyController enemy = hit.GetComponent<EnemyController>();
+            if (!enemy) continue;
+
+            enemy.TakeDamage(kickDamage);
             Debug.Log("Kick hit " + hit.name + " for " + kickDamage);
-            hit.GetComponent<EnemyController>().TakeDamage(kickDamage);
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
         if (punchHitbox)
@@ -87,5 +104,5 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }
     }
-    #endif
+#endif
 }

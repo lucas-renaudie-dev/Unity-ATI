@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
         // --- Smooth current movement direction ---
         if (targetMoveDir != Vector3.zero)
-            currentMoveDir = Vector3.Slerp(currentMoveDir, targetMoveDir, 0.15f); // tweak 0.2f for smoother/faster transitions
+            currentMoveDir = Vector3.Slerp(currentMoveDir, targetMoveDir, 0.2f); // tweak 0.2f for smoother/faster transitions
 
         // --- Determine target rotation ---
         Quaternion targetRot;
