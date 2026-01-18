@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 93447404}
   - component: {fileID: 93447403}
   - component: {fileID: 93447402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,12 +764,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   player: {fileID: 108699767}
   offset: {x: 0, y: 5, z: -8}
-  followSpeed: 10
   mouseSensitivity: 3
+  minDistance: 1.5
+  maxDistance: 8
   minPitch: -10
   maxPitch: 30
-  yaw: 0
-  pitch: 5
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  cameraRadius: 0.25
+  wallOffset: 0.2
+  smoothTime: 0.08
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1390,7 @@ GameObject:
   - component: {fileID: 860132832}
   - component: {fileID: 860132831}
   - component: {fileID: 860132830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,7 +1687,7 @@ GameObject:
   - component: {fileID: 1078642840}
   - component: {fileID: 1078642839}
   - component: {fileID: 1078642838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2079,7 +2084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1422547557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2123,7 +2128,7 @@ GameObject:
   - component: {fileID: 1445729543}
   - component: {fileID: 1445729542}
   - component: {fileID: 1445729541}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2234,7 +2239,7 @@ GameObject:
   - component: {fileID: 1463244607}
   - component: {fileID: 1463244606}
   - component: {fileID: 1463244605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2345,7 +2350,7 @@ GameObject:
   - component: {fileID: 1569413026}
   - component: {fileID: 1569413025}
   - component: {fileID: 1569413024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2610,7 +2615,7 @@ GameObject:
   - component: {fileID: 1761423485}
   - component: {fileID: 1761423484}
   - component: {fileID: 1761423483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2827,7 +2832,7 @@ GameObject:
   - component: {fileID: 1987602286}
   - component: {fileID: 1987602285}
   - component: {fileID: 1987602284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
