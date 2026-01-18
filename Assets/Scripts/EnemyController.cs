@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float minMoveSpeed = 2f;
+    public float maxMoveSpeed = 5f;
     public float attackRange = 1.5f;
     public float attackDamage = 10f;
     public float attackCooldown = 1f;
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
         if (dir.magnitude > attackRange)
         {
             dir.Normalize();
+            float moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
             rb.linearVelocity = dir * moveSpeed + Vector3.up * rb.linearVelocity.y;
         }
         else

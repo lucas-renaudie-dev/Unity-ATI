@@ -13,6 +13,7 @@ public class GameSceneManager : MonoBehaviour
 
     private bool isPaused = false;
     public Image damageOverlay;
+    public Text comboText;
     public bool inputEnabled = true;
 
     void Awake()
@@ -100,6 +101,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void PlayerDied()
     {
+        comboText.gameObject.SetActive(false);
         inputEnabled = false;
 
         Time.timeScale = 0f;
