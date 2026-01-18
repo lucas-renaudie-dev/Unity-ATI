@@ -58,7 +58,7 @@ public class GameSceneManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Arena Game");
     }
 
     // =========================
@@ -119,7 +119,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 0f;
+        SceneManager.LoadScene("Main Menu");
     }
 }
