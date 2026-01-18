@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!GameSceneManager.Instance.inputEnabled)
+        return;
+
         // --- Movement input ---
         float h = Input.GetAxisRaw("Horizontal"); // Q/D or A/D
         float v = Input.GetAxisRaw("Vertical");   // Z/S or W/S
@@ -59,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameSceneManager.Instance.inputEnabled)
+        return;
+        
         // --- Determine target movement direction ---
         Vector3 targetMoveDir = Vector3.zero;
 

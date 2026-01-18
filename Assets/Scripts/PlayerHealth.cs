@@ -37,16 +37,16 @@ public class PlayerHealth : MonoBehaviour
         // Optional: flash red screen
         Debug.Log("Player hit: " + dmg + " remaining health: " + health);
 
-        if (health <= 0)
-        {
-            Debug.Log("Player Died");
-            // TODO: Game over logic
-        }
-
         if(uiManager != null)
             uiManager.UpdateHealth(health, maxHealth);
 
-        if(uiManager != null)
+        if(uiManager != null && health > 0)
             uiManager.ShowDamage(0.7f); // intensity of red flash
+
+        if (health <= 0)
+        {
+            health = 0;
+            GameSceneManager.Instance.PlayerDied();
+        }
     }
 }

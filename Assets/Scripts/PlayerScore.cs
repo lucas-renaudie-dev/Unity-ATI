@@ -27,9 +27,9 @@ public class PlayerScore : MonoBehaviour
 
         // Update UI
         if (scoreText)
-            scoreText.text = "Score: " + totalScore;
+            scoreText.text = "SCORE\n" + totalScore;
         if (comboText)
-            comboText.text = comboCount > 1 ? "Combo x" + comboCount : "";
+            comboText.text = comboCount > 1 ? "COMBO x" + comboCount : "";
     }
 
     public void AddKill()
@@ -45,9 +45,6 @@ public class PlayerScore : MonoBehaviour
         // Calculate points
         int pointsEarned = pointsPerKill * comboCount;
         totalScore += pointsEarned;
-
-        // Optional debug
-        Debug.Log("Kill! Combo x" + comboCount + " Points +" + pointsEarned);
 
         if(uiManager != null)
         {

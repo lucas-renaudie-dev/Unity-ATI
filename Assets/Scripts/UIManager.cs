@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         {
             if (combo > 1)
             {
-                comboText.text = "Combo x" + combo;
+                comboText.text = "COMBO x" + combo;
 
                 // Stop previous animation if running
                 if (comboCoroutine != null)
@@ -107,6 +107,7 @@ public class UIManager : MonoBehaviour
     public void UpdateHealth(float current, float max)
     {
         if (healthBar)
+            Debug.Log("Updating health UI: " + current + "/" + max);
             healthBar.fillAmount = current / max;
     }
 
