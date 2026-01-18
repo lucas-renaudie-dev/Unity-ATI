@@ -64,11 +64,11 @@ public class PlayerAttack : MonoBehaviour
             EnemyController enemy = hit.GetComponent<EnemyController>();
             if (!enemy) continue;
 
-            enemy.TakeDamage(punchDamage);
+            bool b = enemy.TakeDamage(punchDamage);
             //Debug.Log("Punch hit " + hit.name + " for " + punchDamage);
 
             // Add score/combo
-            if (playerScore != null)
+            if (playerScore != null && b)
             {
                 playerScore.AddKill();
                 Debug.Log("Score after punch: " + playerScore.GetScore());
@@ -91,11 +91,11 @@ public class PlayerAttack : MonoBehaviour
             EnemyController enemy = hit.GetComponent<EnemyController>();
             if (!enemy) continue;
 
-            enemy.TakeDamage(kickDamage);
+            bool b = enemy.TakeDamage(kickDamage);
             //Debug.Log("Kick hit " + hit.name + " for " + kickDamage);
 
             // Add score/combo
-            if (playerScore != null)
+            if (playerScore != null && b)
             {
                 playerScore.AddKill();
                 Debug.Log("Score after kick: " + playerScore.GetScore());

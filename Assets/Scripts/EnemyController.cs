@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    public void TakeDamage(float dmg)
+    public bool TakeDamage(float dmg)
     {
         health -= (int)dmg;
         if (health <= 0)
@@ -72,6 +72,8 @@ public class EnemyController : MonoBehaviour
                 playerScore.AddKill();
             }
             Destroy(this.gameObject);
+            return true;
         }
+        return false;
     }
 }
