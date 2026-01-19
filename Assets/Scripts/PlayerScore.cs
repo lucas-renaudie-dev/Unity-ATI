@@ -9,10 +9,17 @@ public class PlayerScore : MonoBehaviour
     public Text comboText;                  // Optional UI to show current combo
 
     private int totalScore = 0;
+    public Text highScoreText;
+    public int highScore { get; private set; } = 0;
     private int comboCount = 0;
     private float comboTimer = 0f;
     public UIManager uiManager;
     
+    void Start()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
     void Update()
     {
         // Countdown combo timer
@@ -30,6 +37,8 @@ public class PlayerScore : MonoBehaviour
             scoreText.text = "SCORE\n" + totalScore;
         if (comboText)
             comboText.text = comboCount > 1 ? "COMBO x" + comboCount : "";
+        if (highScoreText)
+            highScoreText.text = "HIGH SCORE\n" + highScore;
     }
 
     public void AddKill()
@@ -45,6 +54,7 @@ public class PlayerScore : MonoBehaviour
         // Calculate points
         int pointsEarned = pointsPerKill * comboCount;
         totalScore += pointsEarned;
+        setHighScore(totalScore);
 
         if(uiManager != null)
         {
@@ -56,5 +66,15 @@ public class PlayerScore : MonoBehaviour
     public int GetScore()
     {
         return totalScore;
+    }
+
+    public void setHighScore(int totalScore)
+    {
+        if (totalScore > highScore)
+        {
+            highScore = totalScore;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.Save();
+        }
     }
 }
