@@ -16,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float riseMultiplier = 1.3f; // gravity while going up
 
+
     [Header("References")]
     public Transform playerCam; // assign camera in inspector or use Camera.main
+    private Animator animator;
 
     private Rigidbody rb;
     private Vector3 moveInput;
@@ -29,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        lastMoveRotation = transform.rotation;
+        animator = GetComponentInChildren<Animator>(true);
 
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
             playerCam = Camera.main.transform;
 
         Yaw = transform.eulerAngles.y;
+        lastMoveRotation = transform.rotation;
     }
 
     void Update()
@@ -51,9 +54,17 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");   // Z/S or W/S
         moveInput = new Vector3(h, 0f, v).normalized;
 
+        bool isMoving = moveInput.magnitude > 0.1f;
+        animator.SetBool("isMoving", isMoving);
+
         // --- Jump input ---
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !jumpPressed)
+        {
             jumpPressed = true;
+            animator.SetTrigger("jump");
+        }
+
+        animator.SetBool("isGrounded", isGrounded);
 
         // --- Mouse rotation ---
         float mouseX = Input.GetAxis("Mouse X");
@@ -108,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         // --- Jump ---
         if (jumpPressed)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); // reset Y
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpPressed = false;
         }
