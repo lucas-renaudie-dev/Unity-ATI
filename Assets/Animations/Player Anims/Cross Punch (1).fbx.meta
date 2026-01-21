@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 593f0b21705715e4da7fb418cd0619a9
+guid: 3c77bce05f6a7c24f9011ee40e4ad45d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,23 +31,23 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Fast Run
+      name: cross punch
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 16
+      firstFrame: 22
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

@@ -437,6 +437,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  punchHitDelay: 0.4
+  kickHitDelay: 0.4
 --- !u!1 &124706869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,6 +1686,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 530290838371062840, guid: f3defd0a2b884744a8b3752555577fb1, type: 3}
+      propertyPath: punchDelay
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6232085147017960015, guid: f3defd0a2b884744a8b3752555577fb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.45015
@@ -2165,7 +2171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &873657557
 Transform:
   m_ObjectHideFlags: 0
@@ -3769,7 +3775,7 @@ MonoBehaviour:
   minSpawnDistance: 10
   maxSpawnDistance: 40
   spawnInterval: 1
-  maxEnemies: 20
+  maxEnemies: 1
   maxSpawnAttempts: 15
 --- !u!4 &1422547558
 Transform:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 593f0b21705715e4da7fb418cd0619a9
+guid: 17872f19d3487c044a42a448abccaca4
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Fast Run
+      name: mixamo.com
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

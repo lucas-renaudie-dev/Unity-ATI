@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 8f;
     public float fallMultiplier = 2.5f;
     private bool jumpPressed;
-    private bool isGrounded;
+    public bool isGrounded { get; private set; }
     public float riseMultiplier = 1.3f; // gravity while going up
 
 
