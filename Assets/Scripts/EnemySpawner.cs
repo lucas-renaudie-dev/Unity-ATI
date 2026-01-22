@@ -40,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (wallColliders.Length < 1)
         {
-            Debug.LogError("No BoxColliders found under arenaRoot!");
             return;
         }
 

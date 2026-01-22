@@ -107,7 +107,6 @@ public class UIManager : MonoBehaviour
     public void UpdateHealth(float current, float max)
     {
         if (healthBar)
-            Debug.Log("Updating health UI: " + current + "/" + max);
             healthBar.fillAmount = current / max;
     }
 

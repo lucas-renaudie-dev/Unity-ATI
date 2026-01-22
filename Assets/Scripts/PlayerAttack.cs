@@ -29,10 +29,12 @@ public class PlayerAttack : MonoBehaviour
     // --- Delay until hit is registered (seconds) ---
     public float punchHitDelay = 0.2f;
     public float kickHitDelay = 0.3f;
+    Rigidbody rb;
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>(true);
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -76,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator PunchRoutine()
     {
+        rb.constraints |= RigidbodyConstraints.FreezeRotationY;
         GameSceneManager.Instance.inputEnabled = false;
 
         animator.SetTrigger("crossPunch");
@@ -106,10 +109,12 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.2f); // optional extra wait to avoid instant reattack
         EndAttack();
         GameSceneManager.Instance.inputEnabled = true;
+        rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
     }
 
     IEnumerator KickRoutine()
     {
+        rb.constraints |= RigidbodyConstraints.FreezeRotationY;
         GameSceneManager.Instance.inputEnabled = false;
 
         animator.SetTrigger("kick");
@@ -138,6 +143,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         EndAttack();
         GameSceneManager.Instance.inputEnabled = true;
+        rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
     }
 
     void Punch() 
@@ -157,13 +163,11 @@ public class PlayerAttack : MonoBehaviour
             if (!enemy) continue;
 
             bool b = enemy.TakeDamage(punchDamage);
-            //Debug.Log("Punch hit " + hit.name + " for " + punchDamage);
 
             // Add score/combo
             if (playerScore != null && b)
             {
                 playerScore.AddKill();
-                Debug.Log("Score after punch: " + playerScore.GetScore());
             }
                 
         }
@@ -186,13 +190,11 @@ public class PlayerAttack : MonoBehaviour
             if (!enemy) continue;
 
             bool b = enemy.TakeDamage(kickDamage);
-            //Debug.Log("Kick hit " + hit.name + " for " + kickDamage);
 
             // Add score/combo
             if (playerScore != null && b)
             {
                 playerScore.AddKill();
-                Debug.Log("Score after kick: " + playerScore.GetScore());
             }
                 
         }

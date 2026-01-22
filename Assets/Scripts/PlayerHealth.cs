@@ -34,9 +34,6 @@ public class PlayerHealth : MonoBehaviour
         health -= dmg;
         lastHitTime = Time.time;
 
-        // Optional: flash red screen
-        Debug.Log("Player hit: " + dmg + " remaining health: " + health);
-
         if(uiManager != null)
             uiManager.UpdateHealth(health, maxHealth);
 
