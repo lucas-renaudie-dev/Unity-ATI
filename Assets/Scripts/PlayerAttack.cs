@@ -79,6 +79,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator PunchRoutine()
     {
         rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+        rb.constraints |= RigidbodyConstraints.FreezePosition;
         GameSceneManager.Instance.inputEnabled = false;
 
         animator.SetTrigger("crossPunch");
@@ -106,15 +107,17 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // end attack after animation finishes
-        yield return new WaitForSeconds(0.2f); // optional extra wait to avoid instant reattack
+        yield return new WaitForSeconds(0.35f); // optional extra wait to avoid instant reattack
         EndAttack();
         GameSceneManager.Instance.inputEnabled = true;
         rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
+        rb.constraints &= ~RigidbodyConstraints.FreezePosition;
     }
 
     IEnumerator KickRoutine()
     {
         rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+        rb.constraints |= RigidbodyConstraints.FreezePosition;
         GameSceneManager.Instance.inputEnabled = false;
 
         animator.SetTrigger("kick");
@@ -140,10 +143,11 @@ public class PlayerAttack : MonoBehaviour
                 playerScore.AddKill();
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.35f);
         EndAttack();
         GameSceneManager.Instance.inputEnabled = true;
         rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
+        rb.constraints &= ~RigidbodyConstraints.FreezePosition;
     }
 
     void Punch() 

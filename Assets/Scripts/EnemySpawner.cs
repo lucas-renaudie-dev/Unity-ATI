@@ -19,7 +19,10 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        timer = spawnInterval;
+        timer = GameDifficultySettings.Instance.spawnInterval;
+        spawnInterval = GameDifficultySettings.Instance.spawnInterval;
+        maxEnemies = GameDifficultySettings.Instance.maxEnemies;
+
         CalculateArenaBounds();
     }
 
@@ -30,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         if (timer <= 0f)
         {
             SpawnEnemy();
-            timer = spawnInterval;
+            timer = GameDifficultySettings.Instance.spawnInterval;
         }
     }
 

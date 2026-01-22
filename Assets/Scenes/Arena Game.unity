@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f72019cdc35834fbf7cf21b5b1d5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 50
+  maxHealth: 5000
   health: 0
   regenDelay: 3
   regenRate: 20
@@ -1824,6 +1824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873657557}
+  - component: {fileID: 873657558}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -1848,6 +1849,27 @@ Transform:
   - {fileID: 765143446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &873657558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873657556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856c2fd0b4b71414f8be0f368f162138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  difficulty: 0
+  spawnInterval: 0
+  maxEnemies: 0
+  minSpawnDistance: 0
+  maxSpawnDistance: 0
+  minMoveSpeed: 0
+  maxMoveSpeed: 0
+  enemyHealth: 0
+  enemyDamage: 0
 --- !u!1 &914664046
 GameObject:
   m_ObjectHideFlags: 0

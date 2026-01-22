@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     public bool isAttacking = false;
     public float knockDelay = 0.5f;
     public GameObject light;
+    private float moveSpeed;
     void Awake()
     {
         animator = GetComponentInChildren<Animator>(true);
@@ -26,7 +27,15 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform; // Make sure Player has tag "Player"
+        player = GameObject.FindWithTag("Player").transform;
+
+        var settings = GameDifficultySettings.Instance;
+
+        minMoveSpeed = settings.minMoveSpeed;
+        maxMoveSpeed = settings.maxMoveSpeed;
+        health = settings.enemyHealth;
+
+        moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
     }
 
     void Update()
@@ -60,13 +69,12 @@ public class EnemyController : MonoBehaviour
         float distance = dir.magnitude;
 
         // --- MOVEMENT ---
-        if (distance > attackRange)
+        if (distance > attackRange && !isAttacking)
         {
             isAttacking = false;
             animator.SetBool("isMoving", true);
             dir.Normalize();
 
-            float moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
             rb.linearVelocity = new Vector3(
                 dir.x * moveSpeed,
                 rb.linearVelocity.y,
