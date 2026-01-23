@@ -55,7 +55,7 @@ public class GameDifficultySettings : MonoBehaviour
 
                 minMoveSpeed = 1f;
                 maxMoveSpeed = 5f;
-                enemyHealth = 10;
+                enemyHealth = 20;
                 break;
 
             case Difficulty.Medium:

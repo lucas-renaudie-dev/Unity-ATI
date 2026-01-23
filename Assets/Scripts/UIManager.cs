@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Score")]
-    public Text scoreText;
-    public Text comboText;
+    public TMP_Text scoreText;
+    public TMP_Text comboText;
 
     [Header("Health")]
     public Image healthBar;
@@ -32,74 +33,72 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // --- Score/Combo ---
+    // --- Score ---
     public void UpdateScore(int score)
     {
-        if (scoreText) scoreText.text = "Score: " + score;
+        if (scoreText)
+            scoreText.text = "Score: " + score;
     }
 
+    // --- Combo ---
     public void UpdateCombo(int combo)
     {
-        if (comboText)
+        if (!comboText) return;
+
+        if (combo > 1)
         {
-            if (combo > 1)
-            {
-                comboText.text = "COMBO x" + combo;
+            comboText.text = "COMBO x" + combo;
 
-                // Stop previous animation if running
-                if (comboCoroutine != null)
-                    StopCoroutine(comboCoroutine);
+            if (comboCoroutine != null)
+                StopCoroutine(comboCoroutine);
 
-                // Start pop-up animation
-                comboCoroutine = StartCoroutine(ShowComboPopup());
-            }
-            else
-            {
-                comboText.text = "";
-            }
+            comboCoroutine = StartCoroutine(ShowComboPopup());
+        }
+        else
+        {
+            comboText.text = "";
         }
     }
 
     // --- Combo pop-up animation ---
     private IEnumerator ShowComboPopup()
     {
-        float zoomTime = 0.2f;      // time to scale up
-        float displayTime = 0.6f;   // stay on screen
-        float fadeTime = 0.2f;      // fade out duration
+        float zoomTime = 0.2f;
+        float displayTime = 0.6f;
+        float fadeTime = 0.2f;
 
-        // --- Initialize ---
+        // Init
         comboText.transform.localScale = Vector3.one * 0.5f;
-        comboText.color = new Color(comboText.color.r, comboText.color.g, comboText.color.b, 1f);
+        comboText.alpha = 1f;
 
-        // --- Scale up ---
+        // Scale up
         float timer = 0f;
         while (timer < zoomTime)
         {
             timer += Time.deltaTime;
             float t = timer / zoomTime;
-            comboText.transform.localScale = Vector3.Lerp(Vector3.one * 0.5f, Vector3.one * 1.5f, t);
+            comboText.transform.localScale =
+                Vector3.Lerp(Vector3.one * 0.5f, Vector3.one * 1.5f, t);
             yield return null;
         }
-        comboText.transform.localScale = Vector3.one * 1.5f;
 
-        // --- Stay visible ---
         yield return new WaitForSeconds(displayTime);
 
-        // --- Fade out and shrink ---
+        // Fade out + shrink
         timer = 0f;
         Vector3 startScale = comboText.transform.localScale;
-        Color startColor = comboText.color;
 
         while (timer < fadeTime)
         {
             timer += Time.deltaTime;
             float t = timer / fadeTime;
-            comboText.transform.localScale = Vector3.Lerp(startScale, Vector3.one * 0.5f, t);
-            comboText.color = new Color(startColor.r, startColor.g, startColor.b, 1f - t);
+            comboText.transform.localScale =
+                Vector3.Lerp(startScale, Vector3.one * 0.5f, t);
+            comboText.alpha = 1f - t;
             yield return null;
         }
 
-        comboText.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        comboText.alpha = 0f;
         comboText.transform.localScale = Vector3.one * 0.5f;
     }
 
@@ -118,13 +117,15 @@ public class UIManager : MonoBehaviour
     }
 
     // --- Cooldowns ---
-    public void UpdatePunchCooldown(float ratio) // 0 = ready, 1 = full cooldown
+    public void UpdatePunchCooldown(float ratio)
     {
-        if (punchCooldownBar) punchCooldownBar.fillAmount = 1f - ratio;
+        if (punchCooldownBar)
+            punchCooldownBar.fillAmount = 1f - ratio;
     }
 
     public void UpdateKickCooldown(float ratio)
     {
-        if (kickCooldownBar) kickCooldownBar.fillAmount = 1f - ratio;
+        if (kickCooldownBar)
+            kickCooldownBar.fillAmount = 1f - ratio;
     }
 }

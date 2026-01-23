@@ -1,15 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerScore : MonoBehaviour
-{
+{   
     public int pointsPerKill = 100;         // Base points per enemy
     public float comboTime = 3f;            // Time window for combo in seconds
-    public Text scoreText;                  // UI text to show score
-    public Text comboText;                  // Optional UI to show current combo
+    public TMP_Text scoreText;           // UI text to show score
+    public TMP_Text comboText;           // Optional UI to show current combo
 
     private int totalScore = 0;
-    public Text highScoreText;
+    public TMP_Text highScoreText;
     public int highScore { get; private set; } = 0;
     private int comboCount = 0;
     private float comboTimer = 0f;

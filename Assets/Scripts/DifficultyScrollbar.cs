@@ -13,15 +13,12 @@ public class DifficultyScrollbarUI : MonoBehaviour
         );
     }
 
-    void Update()
-    {
-        GameDifficultySettings.Instance.difficulty = ScrollbarValueToDifficulty(difficultyScrollbar.value);
-    }
-
     // Hook this to Scrollbar → On Value Changed (float)
     public void OnDifficultyChanged(float value)
     {
-        
+        var settings = GameDifficultySettings.Instance;
+        GameDifficultySettings.Instance.difficulty = ScrollbarValueToDifficulty(difficultyScrollbar.value);
+        settings.ApplyDifficulty();
     }
 
     Difficulty ScrollbarValueToDifficulty(float value)

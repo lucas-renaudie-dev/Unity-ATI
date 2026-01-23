@@ -9,6 +9,8 @@ public class GameSceneManager : MonoBehaviour
     [Header("UI Screens")]
     public GameObject pauseScreen;
     public GameObject deathScreen;
+    public GameObject pauseOptionsScreen;
+    public GameObject deathOptionsScreen;
 
     private bool isPaused = false;
     public Image damageOverlay;
@@ -27,6 +29,8 @@ public class GameSceneManager : MonoBehaviour
 
         pauseScreen.SetActive(false);
         deathScreen.SetActive(false);
+        pauseOptionsScreen.SetActive(false);
+        deathOptionsScreen.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -122,5 +126,28 @@ public class GameSceneManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PauseOptions()
+    {
+        pauseScreen.gameObject.SetActive(false);
+        pauseOptionsScreen.gameObject.SetActive(true);
+    }
+    public void BackToPauseScreen()
+    {
+        pauseOptionsScreen.gameObject.SetActive(false);
+        pauseScreen.gameObject.SetActive(true);
+    }
+
+    public void DeathOptions()
+    {
+        deathScreen.gameObject.SetActive(false);
+        deathOptionsScreen.gameObject.SetActive(true);
+    }
+
+    public void BackToDeathScreen()
+    {
+        deathOptionsScreen.gameObject.SetActive(false);
+        deathScreen.gameObject.SetActive(true);
     }
 }
