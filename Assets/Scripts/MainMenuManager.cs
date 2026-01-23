@@ -3,6 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject mainMenuScreen;
+    public GameObject optionsScreen;
+
+    void Start()
+    {   
+        mainMenuScreen.gameObject.SetActive(false);
+        mainMenuScreen.gameObject.SetActive(true);
+    }
+
     public void PlayGame()
     {
         Time.timeScale = 1f;
@@ -20,5 +29,18 @@ public class MainMenuManager : MonoBehaviour
     #else
         Application.Quit();
     #endif
+    }
+
+    public void Options()
+    {
+        mainMenuScreen.gameObject.SetActive(false);
+        optionsScreen.gameObject.SetActive(true);
+    }
+
+    public void Back()
+    {
+        optionsScreen.gameObject.SetActive(false);
+        mainMenuScreen.gameObject.SetActive(true);
+        
     }
 }

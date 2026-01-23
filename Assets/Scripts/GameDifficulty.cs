@@ -40,6 +40,11 @@ public class GameDifficultySettings : MonoBehaviour
         ApplyDifficulty();
     }
 
+    void Update()
+    {
+        Debug.Log(difficulty);
+    }
+
     public void ApplyDifficulty()
     {
         switch (difficulty)
