@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameSceneManager : MonoBehaviour
 
     private bool isPaused = false;
     public Image damageOverlay;
-    public Text comboText;
+    public TMP_Text comboText;
     public bool inputEnabled = true;
 
     void Awake()
@@ -96,6 +97,15 @@ public class GameSceneManager : MonoBehaviour
 
         pauseScreen.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : 1f;
+
+        if (isPaused)
+        {
+            comboText.gameObject.SetActive(false);
+        }
+        else
+        {
+            comboText.gameObject.SetActive(true);
+        }
 
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isPaused;
