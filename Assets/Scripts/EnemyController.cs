@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     public float knockDelay = 0.5f;
     public GameObject light;
     private float moveSpeed;
+    
     void Awake()
     {
         animator = GetComponentInChildren<Animator>(true);

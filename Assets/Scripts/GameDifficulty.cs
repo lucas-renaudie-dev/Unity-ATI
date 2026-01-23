@@ -10,6 +10,7 @@ public enum Difficulty
 public class GameDifficultySettings : MonoBehaviour
 {
     public static GameDifficultySettings Instance;
+    public static event System.Action OnDifficultyApplied;
 
     [Header("Difficulty")]
     public Difficulty difficulty = Difficulty.Medium;
@@ -42,7 +43,7 @@ public class GameDifficultySettings : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(difficulty);
+        //Debug.Log(difficulty);
     }
 
     public void ApplyDifficulty()
@@ -76,5 +77,9 @@ public class GameDifficultySettings : MonoBehaviour
                 enemyHealth = 20;
                 break;
         }
+
+        OnDifficultyApplied?.Invoke();
+
+        Debug.Log($"🎮 Difficulty applied: {difficulty}");
     }
 }
