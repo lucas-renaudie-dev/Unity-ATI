@@ -4,7 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     public GameObject enemyPrefab;
-    public Transform player;
+    private Transform player;
     public Transform arenaRoot; // parent object that contains the 8 wall objects
 
     [Header("Spawn Settings")]
@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
+
         timer = GameDifficultySettings.Instance.spawnInterval;
         spawnInterval = GameDifficultySettings.Instance.spawnInterval;
         maxEnemies = GameDifficultySettings.Instance.maxEnemies;
@@ -28,6 +30,13 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            GameObject p = GameObject.FindWithTag("Player");
+            if (p == null) return;
+            player = p.transform;
+        }
+
         timer -= Time.deltaTime;
 
         if (timer <= 0f)

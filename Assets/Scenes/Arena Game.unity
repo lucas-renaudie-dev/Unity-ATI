@@ -1861,7 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c2fd0b4b71414f8be0f368f162138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  difficulty: 0
+  difficulty: 1
   spawnInterval: 0
   maxEnemies: 0
   minSpawnDistance: 0
