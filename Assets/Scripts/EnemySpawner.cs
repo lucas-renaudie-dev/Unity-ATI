@@ -33,8 +33,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("✅ Arena scene STARTED");
-
         FindPlayer();
         CalculateArenaBounds();
 
@@ -74,8 +72,6 @@ public class EnemySpawner : MonoBehaviour
 
         timer = spawnInterval;
         initialized = true;
-
-        Debug.Log($"🟢 Spawner initialized | interval={spawnInterval}, maxEnemies={maxEnemies}");
     }
 
     void FindPlayer()
@@ -89,7 +85,6 @@ public class EnemySpawner : MonoBehaviour
     {
         if (arenaRoot == null)
         {
-            Debug.LogError("❌ ArenaRoot not assigned!");
             return;
         }
 
@@ -97,7 +92,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (wallColliders.Length == 0)
         {
-            Debug.LogError("❌ No wall colliders found under ArenaRoot!");
             return;
         }
 
