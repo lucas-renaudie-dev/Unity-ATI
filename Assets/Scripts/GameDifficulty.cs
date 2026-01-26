@@ -37,13 +37,17 @@ public class GameDifficultySettings : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        ApplyDifficulty();
     }
+
+    void Start()
+{
+    ApplyDifficulty();
+}
+
 
     void Update()
     {
-        //Debug.Log(difficulty);
+        Debug.Log(difficulty);
     }
 
     public void ApplyDifficulty()
@@ -54,7 +58,7 @@ public class GameDifficultySettings : MonoBehaviour
                 spawnInterval = 2f;
                 maxEnemies = 5;
 
-                minMoveSpeed = 1f;
+                minMoveSpeed = 3f;
                 maxMoveSpeed = 5f;
                 enemyHealth = 20;
                 break;
@@ -63,7 +67,7 @@ public class GameDifficultySettings : MonoBehaviour
                 spawnInterval = 1f;
                 maxEnemies = 15;
 
-                minMoveSpeed = 3f;
+                minMoveSpeed = 4f;
                 maxMoveSpeed = 7f;
                 enemyHealth = 20;
                 break;
@@ -79,7 +83,5 @@ public class GameDifficultySettings : MonoBehaviour
         }
 
         OnDifficultyApplied?.Invoke();
-
-        Debug.Log($"🎮 Difficulty applied: {difficulty}");
     }
 }

@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        GameDifficultySettings.Instance.ApplyDifficulty();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

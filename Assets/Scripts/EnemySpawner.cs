@@ -116,10 +116,10 @@ public class EnemySpawner : MonoBehaviour
             Vector2 dir = Random.insideUnitCircle.normalized;
             float distance = Random.Range(minSpawnDistance, maxSpawnDistance);
 
-            Vector3 candidate = player.position + new Vector3(
-                dir.x * distance,
-                0f,
-                dir.y * distance
+            Vector3 candidate = new Vector3(
+                player.position.x + dir.x * distance,
+                1.0f,
+                player.position.z + dir.y * distance
             );
 
             if (arenaBounds.Contains(candidate))
