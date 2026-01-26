@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Unity ATI.sln"
+    "dotnet.defaultSolution": "Arena Brawler.sln"
 }
